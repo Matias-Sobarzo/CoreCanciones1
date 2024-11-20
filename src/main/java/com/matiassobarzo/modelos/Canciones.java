@@ -6,6 +6,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
@@ -18,15 +20,22 @@ public class Canciones {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String titulo;
-	private String artista;
+	
+	@ManyToOne
+	@JoinColumn(name="id_artista")
+	private Artista artista;
+	
 	private String album;
+	
 	private String genero;
+	
 	private String idioma;
+	
 	private LocalDateTime fecha_creacion;
 	private LocalDateTime fecha_actualizacion;
 	
 	
-	public Canciones(Long id, String titulo, String artista, String album, String genero, String idioma,
+	public Canciones(Long id, String titulo, Artista artista, String album, String genero, String idioma,
 			LocalDateTime fecha_creacion, LocalDateTime fecha_actualizacion) {
 		super();
 		this.id = id;
@@ -43,7 +52,7 @@ public class Canciones {
 		super();
 		this.id = 0l;
 		this.titulo = "";
-		this.artista = "";
+		this.artista = new Artista();
 		this.album = "";
 		this.genero = "";
 		this.idioma = "";
@@ -68,17 +77,17 @@ public class Canciones {
 	}
 
 
-	public void setTitulos(String titulo) {
+	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
 
 
-	public String getArtista() {
+	public Artista getArtista() {
 		return artista;
 	}
 
 
-	public void setArtista(String artista) {
+	public void setArtista(Artista artista) {
 		this.artista = artista;
 	}
 

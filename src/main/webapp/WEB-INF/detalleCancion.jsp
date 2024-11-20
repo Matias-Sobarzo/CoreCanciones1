@@ -4,20 +4,34 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Detalle canción:</title>
+<link rel="stylesheet" href="/css/Style.css">
 </head>
 <body>
-	<h1>Detalle canción:</h1>
+	<header>
+		<h1>Detalle canción:</h1>
+	</header>
 	
-	<ul>
-		<li>Titulo: ${cancion.titulo}</li>
-		<li>Artista: ${cancion.artista}</li>
-		<li>Album: ${cancion.album}</li>
-		<li>Género: ${cancion.genero}</li>
-		<li>Idioma: ${cancion.idioma}</li>
-	</ul>
-	
-	<a href="/canciones">Volver</a>
+	<div class="container">
+		<div class="card">
+			<ul>
+				<li>Titulo: <b>${cancion.titulo}</b></li>
+				<li>Artista: <b>${cancion.artista.nombre} ${cancion.artista.apellido}</b></li>
+				<li>Album: <b>${cancion.album}</b></li>
+				<li>Género: <b>${cancion.genero}</b></li>
+				<li>Idioma: <b>${cancion.idioma}</b></li>
+			</ul>
+			<a href="/canciones/formulario/editar/${cancion.id}">Editar cancion</a>
+			
+			<form action="/canciones/eliminar/${cancion.id}" method="POST">
+				<input type="hidden" name="_method" value="DELETE" />
+				<button>Eliminar</button>
+			</form>
+		</div>
+		<div class="card">
+			<li><a href="/canciones"><button>Volver</button></a><li>
+		</div>
+	</div>
 	
 </body>
 </html>
